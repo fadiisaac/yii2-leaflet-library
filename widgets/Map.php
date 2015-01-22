@@ -129,6 +129,8 @@ class Map extends Widget
                 $js[] = "$name.on('$event', $handler);";
             }
         }
-        $view->registerJs("function {$name}_init(){\n" . implode("\n", $js) . "}\n{$name}_init();");
+        $jsString = (YII_DEBUG ? "/* Init map {$name} */\n" : '') .
+            "(function () {\n". implode("\n", $js) ."\n})();";
+        $view->registerJs($jsString);
     }
 } 
