@@ -103,6 +103,11 @@ class Map extends Widget
      */
     public function registerScript()
     {
+        $clientOptions = $this->leafLet->clientOptions;
+        if ($clientOptions === false) {
+            return;
+        }
+
         $view = $this->getView();
 
         LeafLetAsset::register($view);
@@ -112,15 +117,10 @@ class Map extends Widget
         $name = $this->leafLet->name;
         $js = $this->leafLet->getJs();
 
-        $clientOptions = $this->leafLet->clientOptions;
-        if ($clientOptions !== false) {
-            $options = empty($clientOptions) ? '{}' : Json::encode($clientOptions);
-            array_unshift($js, "var $name = L.map('$id', $options);");
-            if ($this->leafLet->getTileLayer() !== null) {
-                $js[] = $this->leafLet->getTileLayer()->encode();
-            }
-        } else {
-            return;
+        $options = empty($clientOptions) ? '{}' : Json::encode($clientOptions);
+        array_unshift($js, "var $name = L.map('$id', $options);");
+        if ($this->leafLet->getTileLayer() !== null) {
+            $js[] = $this->leafLet->getTileLayer()->encode();
         }
         $clientEvents = $this->leafLet->clientEvents;
 
