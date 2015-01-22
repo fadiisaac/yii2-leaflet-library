@@ -40,20 +40,43 @@ class Map extends Widget
 
     /**
      * Initializes the widget.
-     * This method will register the bootstrap asset bundle. If you override this method,
-     * make sure you call the parent implementation first.
+     * This method will register the leaflet asset bundle. If you override
+     * this method, make sure you call the parent implementation first.
      */
     public function init()
     {
         parent::init();
+        self::checkLeafLetValidity();
+        self::ensureMapId();
+        self::setMapHeight();
+    }
+
+    /**
+     * Check validity of the leaflet property.
+     */
+    private function checkLeafLetValidity()
+    {
+        if (empty($this->leafLet) || !($this->leafLet instanceof LeafLet)) {
+            $msg ="'leafLet' attribute cannot be empty and should be of type LeafLet component.";
+            throw new InvalidConfigException($msg);
+        }
+    }
+
+    /**
+     * Ensure that the map has an ID.
+     */
+    private function ensureMapId()
+    {
         if (!isset($this->options['id'])) {
             $this->options['id'] = $this->getId();
         }
-        if (empty($this->leafLet) || !($this->leafLet instanceof LeafLet)) {
-            throw new InvalidConfigException(
-                "'leafLet' attribute cannot be empty and should be of type LeafLet component."
-            );
-        }
+    }
+
+    /**
+     * Set the height of the generated map.
+     */
+    private function setMapHeight()
+    {
         $inlineStyles = ArrayHelper::getValue($this->options, 'style');
         if ($inlineStyles) {
             $styles = explode(';', $inlineStyles);
