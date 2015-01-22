@@ -29,8 +29,8 @@ class Map extends Widget
      */
     public $leafLet;
     /**
-     * @var int the height of the map. Failing to configure the height of the map, will result in
-     * unexpected results.
+     * @var int the height of the map, in px. Failing to configure the height
+     * of the map, will result in unexpected results.
      */
     public $height = 200;
     /**
