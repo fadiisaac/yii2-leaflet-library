@@ -56,6 +56,19 @@ class TileLayer extends Layer
         if (empty($this->urlTemplate)) {
             throw new InvalidConfigException("'urlTemplate' cannot be empty.");
         }
+        $this->clientOptions = array_merge(
+            static::getDefaultClientOptions(),
+            $this->clientOptions
+        );
+    }
+
+    /**
+     * Get default client options for this class, overwriteable by the user.
+     * Subclasses should probably overwrite this method.
+     */
+    protected static function getDefaultClientOptions()
+    {
+        return [];
     }
 
     /**
