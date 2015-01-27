@@ -61,10 +61,13 @@ $leaflet->addLayer($marker)      // add the marker
         ->addLayer($tileLayer);  // add the tile layer
 
 // finally render the widget
-echo \dosamigos\leaflet\widgets\Map::widget(['leafLet' => $leaflet]);
+echo \dosamigos\leaflet\widgets\Map::widget([
+    'leafLet' => $leaflet,
+    'height' => 300,     // map height in px, defaults to 200px
+]);
 
 // we could also do
-// echo $leaflet->widget();
+// echo $leaflet->widget(['height' => 300]);
 ```
 
 Further Information
