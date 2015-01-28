@@ -42,15 +42,7 @@ $center = new dosamigos\leaflet\types\LatLng(['lat' => 51.508, 'lng' => -0.11]);
 $marker = new \dosamigos\leaflet\layers\Marker(['latLng' => $center, 'popupContent' => 'Hi!']);
 
 // The Tile Layer (very important)
-$tileLayer = new \dosamigos\leaflet\layers\TileLayer([
-   'urlTemplate' => 'http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg',
-    'clientOptions' => [
-        'attribution' => 'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> ' .
-        '<img src="http://developer.mapquest.com/content/osm/mq_logo.png">, ' .
-        'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-        'subdomains' => '1234'
-    ]
-]);
+$tileLayer = new \dosamigos\leaflet\layers\tiles\MapQuest();
 
 // now our component and we are going to configure it
 $leaflet = new \dosamigos\leaflet\LeafLet([
