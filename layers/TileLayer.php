@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2013 2amigOS! Consulting Group LLC
+ * @copyright Copyright (c) 2013-2015 2amigOS! Consulting Group LLC
  * @link http://2amigos.us
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
@@ -56,6 +56,19 @@ class TileLayer extends Layer
         if (empty($this->urlTemplate)) {
             throw new InvalidConfigException("'urlTemplate' cannot be empty.");
         }
+        $this->clientOptions = array_merge(
+            static::getDefaultClientOptions(),
+            $this->clientOptions
+        );
+    }
+
+    /**
+     * Get default client options for this class, overwriteable by the user.
+     * Subclasses should probably overwrite this method.
+     */
+    protected static function getDefaultClientOptions()
+    {
+        return [];
     }
 
     /**
