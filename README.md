@@ -1,3 +1,10 @@
+IMPORTANT
+=========
+This repository is depecrated in favor to independent repositories, which are easier to maintain and improve than a big repo. Due that this repository is not on packagist, it will be removed at the end of the June of this year 2015. 
+
+Please, check [Yii Wheels site](http://yiiwheels.com) to get the latest releases of this library and its plugins. 
+
+
 LeafLet Extension for Yii2
 ==========================
 
